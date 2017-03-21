@@ -18,9 +18,9 @@ app.use(bodyParser.json())
 // vamos a configurar nuestroheader para curarnos en salud
 app.use(function(req,res,next){              //* cualquiera puede hacer peticiones a nuestra api rest
   res.header('Access-Control-Allow-Origin','*')
-  res.header('Access-Control-Allow-Headers','A-API-kEY, Origin, X-Requested-With,Content-Type,Accept,Access--Control-Request-Method')
-  res.header('Access-Control-Allow-Methods','GET','POST','PUT','DELETE','OPTIONS')
-  res.header('Allow','GET','POST','PUT','DELETE','OPTIONS')
+  res.header('Access-Control-Allow-Headers','X-API-kEY, Origin, X-Requested-With,Content-Type,Accept,Access--Control-Request-Method')
+  res.header('Access-Control-Allow-Methods','GET,POST,PUT,DELETE,OPTIONS')
+  res.header('Allow','GET,POST,PUT,DELETE,OPTIONS')
 
   next()
 })

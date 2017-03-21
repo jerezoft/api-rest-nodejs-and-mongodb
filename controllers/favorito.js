@@ -1,5 +1,18 @@
 'use strict'
 var Favorito = require('../models/favorito')
+//------------------------------------------------------------------------------------------------------------
+
+function getIndex(req,res){
+  res.status(200).send('<html><body>'
+		      + '<h1>Saludo</h1>'
+		      + '<form method="get" action="/saludo">'
+		      + '<label for="nombre">¿Cómo te llamas?</label>'
+		      + '<input type="text" name="nombre" id="nombre">'
+		      + '<input type="submit" value="Enviar"/>'
+		      + '</form>'
+		      + '</body></html>');
+
+}
 
 //-----------------------------------------------------------------------------------------------------
 function favoritos(req,res){
@@ -40,14 +53,14 @@ function getFavorito(req,res){
 
 function getFavoritos(req,res){
                           //-title desendente  title asendente
-    Favorito.find({}).sort('-_id').exec(function(err,doc){
+    Favorito.find({}).sort('-_id').exec(function(err,favoritos){
       if (err) {
           res.status(500).send({message : "Error al devolver los marcadores"})
       }else{
-            if (!doc) {
+            if (!favoritos) {
                  res.status(404).send({message : "No existen marcadores"})
             }else{
-                 res.status(200).send({doc})
+                 res.status(200).send({favoritos})
             }
       }
     })
@@ -118,6 +131,7 @@ function DeleteFavorito(req,res){
 module.exports = {
   prueba,
   getFavorito,
+  getIndex,
   getFavoritos,
   UpdateFavorito,
   DeleteFavorito,
